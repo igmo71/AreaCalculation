@@ -2,7 +2,7 @@
 using AreaCalc.Lib;
 using AreaCalc.Lib.Shapes;
 
-Console.WriteLine("Hello, Mindbox!");
+Console.WriteLine("Hello, World!");
 
 IShape shape = new Circle() { Radius = 6.789 };
 var circleArea = Area.Calculate<Circle>(shape);

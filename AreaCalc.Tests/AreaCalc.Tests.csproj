@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AreaCalc.Lib\AreaCalc.Lib.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,9 @@
 {
     public class Triangle : IShape
     {
+        private double sideA;
+        private double sideB;
+        private double sideC;
 
         public Triangle()
         { }
@@ -14,15 +17,43 @@
         private void InitInstance(double[] measures)
         {
             if (measures.Length != 3)
-                throw new ArgumentException("Maesures parameters for Triangle must be 3");
+                throw new AppParametersCountMissmatchException(nameof(Triangle), 3, measures.Length);
             SideA = measures[0];
             SideB = measures[1];
             SideC = measures[2];
         }
 
-        public required double SideA { get; set; }
-        public required double SideB { get; set; }
-        public required double SideC { get; set; }
+        public required double SideA
+        {
+            get => sideA;
+            set
+            {
+                if (value <= 0)
+                    throw new AppParameterNegativeException(nameof(Triangle), nameof(SideA), value);
+                sideA = value;
+            }
+        }
+        public required double SideB
+        {
+            get => sideB;
+            set
+            {
+                if (value <= 0)
+                    throw new AppParameterNegativeException(nameof(Triangle), nameof(SideB), value);
+                sideB = value;
+            }
+        }
+
+        public required double SideC
+        {
+            get => sideC;
+            set
+            {
+                if (value <= 0)
+                    throw new AppParameterNegativeException(nameof(Triangle), nameof(SideC), value);
+                sideC = value;
+            }
+        }
 
         public double Calculate()
         {

@@ -2,6 +2,8 @@
 {
     public class Circle : IShape
     {
+        private double radius;
+
         public Circle()
         {
             
@@ -15,11 +17,20 @@
         private void InitInstance(double[] measures)
         {
             if (measures.Length != 1)
-                throw new ArgumentException("Maesures parameters for Triangle must be 3");
+                throw new AppParametersCountMissmatchException(nameof(Circle), 1, measures.Length);
             Radius = measures[0];
         }
 
-        public required double Radius { get; set; }
+        public required double Radius
+        {
+            get => radius; 
+            set
+            {
+                if (value <= 0)
+                    throw new AppParameterNegativeException(nameof(Circle), nameof(Radius), value);
+                radius = value;
+            }
+        }
 
         public double Calculate()
         {

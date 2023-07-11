@@ -35,6 +35,6 @@ Console.WriteLine($"Right Triangle Area: {rightTriangleArea} -> is Right Triangl
 
 
 
-var triangleAreaByName = Area.Calculate("Triangle", 3, 4);
+var triangleAreaByName = Area.Calculate("Triangle", 3, 4, 5);
 
 Console.WriteLine($"Triangle Area By Name: {triangleAreaByName}");

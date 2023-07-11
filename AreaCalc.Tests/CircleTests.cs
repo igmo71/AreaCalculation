@@ -1,5 +1,7 @@
 ﻿using AreaCalc.Lib;
 using AreaCalc.Lib.Shapes;
+using FluentAssertions;
+
 
 namespace AreaCalc.Tests
 {
@@ -34,7 +36,7 @@ namespace AreaCalc.Tests
             // Arrange
             // Act
             // Assert
-            Assert.ThrowsAny<AppException>(() => new Circle() { Radius = -5 }); // -5 is negative parameter
+            Assert.ThrowsAny<AppParameterNegativeException>(() => new Circle() { Radius = -5 }); // -5 is negative parameter
         }
 
         [Fact]
@@ -44,8 +46,9 @@ namespace AreaCalc.Tests
             string shapeName = "Circle";
             double[] measures = { 3.0, 4.0 }; // Must be only One parameter
             // Act
+            Action action = () => Area.Calculate(shapeName, measures);
             // Assert
-            Assert.ThrowsAny<AppException>(() => Area.Calculate(shapeName, measures));
+            action.Should().Throw<Exception>().WithInnerException<AppParametersCountMissmatchException>();
         }
 
         [Fact]
